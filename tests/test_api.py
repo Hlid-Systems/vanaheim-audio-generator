@@ -70,3 +70,35 @@ async def test_upload_script_file():
             
          assert response.status_code == 200, f"Failed: {response.text}"
          assert response.json()["status"] == "success"
+
+@pytest.mark.anyio
+async def test_generate_story_simulation():
+    """Test generating audio for a STORY scenario."""
+    
+    mock_segments = [
+        ScriptSegment(voice="es-ES-AlvaroNeural", role="Narrador", name="Narrador", text="Había una vez...")
+    ]
+    mock_output_path = "data/output/story_mock.mp3"
+
+    with patch("app.services.script_service.ScriptService.generate_script", new_callable=AsyncMock) as mock_gen_script, \
+         patch("app.services.audio_service.AudioService.process_script", new_callable=AsyncMock) as mock_proc_audio, \
+         patch("builtins.open", mock_open()), \
+         patch("json.dump"):
+        
+        mock_gen_script.return_value = mock_segments
+        mock_proc_audio.return_value = mock_output_path
+
+        payload = {
+            "participants": 3,
+            "duration_minutes": 5,
+            "topic": "El Caballero Oscuro",
+            "context": "Fantasía Medieval",
+            "scenario": "STORY"
+        }
+
+        async with AsyncClient(app=app, base_url="http://test") as ac:
+            response = await ac.post("/api/v1/simulation/generate", json=payload)
+
+        assert response.status_code == 200
+        data = response.json()
+        assert data["status"] == "success"

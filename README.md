@@ -1,12 +1,12 @@
 # Simulation Audio Generator
 
-A professional microservice designed to generate realistic agile software team audio simulations. It combines **LLM-based Script Generation** (OpenAI) with **High-Quality Text-to-Speech** (EdgeTTS).
+A professional microservice designed to generate realistic corporate team audio simulations. It combines **LLM-based Script Generation** (OpenAI) with **High-Quality Text-to-Speech** (EdgeTTS).
 
 ## Features
 
 - **Dynamic Script Generation**: Creates unique scenarios based on topic, context, and participant count.
-- **Realistic Voice Synthesis**: Uses neural voices to assign distinct personalities to roles (Scrum Master, PO, Devs).
-- **Agile Architecture**: Built with FastAPI, adhering to Clean Architecture principles.
+- **Realistic Voice Synthesis**: Uses neural voices to assign distinct personalities to roles (Lead, PO, Engineers).
+- **Clean Architecture**: Built with FastAPI, adhering to separation of concerns.
 - **Type Safety**: Fully typed with Pydantic.
 - **Structured Logging**: Production-ready logging configuration.
 
@@ -65,8 +65,8 @@ Generates a script from scratch and then the audio.
 {
   "participants": 4,
   "duration_minutes": 2,
-  "topic": "Sprint Retrospective",
-  "context": "The team failed to meet the sprint goal due to unexpected bugs."
+  "topic": "Project Post-Mortem",
+  "context": "The team missed the Q3 deadline due to unexpected integration issues."
 }
 ```
 

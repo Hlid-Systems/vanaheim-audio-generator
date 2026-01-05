@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "sprint-simulation-audio"
+name = "simulation-audio-generator"
 version = "0.1.0"
-description = "A microservice to generate agile sprint simulation audio using EdgeTTS and LLMs."
+description = "A microservice to generate realistic corporate team audio simulations using EdgeTTS and LLMs."
 authors = ["Admin <admin@example.com>"]
 readme = "README.md"
 packages = [{include = "app"}]

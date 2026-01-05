@@ -6,8 +6,8 @@ from app.api.v1.endpoints import router as api_router
 from app.core.logging import logger
 
 app = FastAPI(
-    title="Voice Analysis Simulation Service",
-    description="API to generate agile simulation audios using AI voices.",
+    title="Simulation Audio Generator",
+    description="API to generate realistic corporate team audio simulations using AI voices.",
     version="1.0.0"
 )
 

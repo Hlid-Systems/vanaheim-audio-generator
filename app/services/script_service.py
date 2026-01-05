@@ -9,6 +9,8 @@ from app.core.config import settings
 from app.schemas.simulation import SimulationRequest, ScriptSegment
 from app.core.logging import logger
 
+from app.core.prompts import ScenarioPrompts
+
 class ScriptService:
     def __init__(self):
         self.client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
@@ -32,50 +34,18 @@ class ScriptService:
         """
         Generates a script for the simulation using an LLM.
         """
-        logger.info(f"Generating script for topic: {request.topic} with {request.participants} participants.")
+        logger.info(f"Generating script for ({request.scenario}) topic: {request.topic} with {request.participants} participants.")
         
-        system_prompt = """
-        Eres un experto guionista para simulaciones de ingeniería de software ágil.
-        Tu tarea es generar un guion JSON para una API de simulación de voz.
-        
-        La salida debe ser estrictamente un OBJETO JSON con una clave "segments" que contenga la lista de turnos.
-        Estructura:
-        {
-          "segments": [
-            {
-                "voice": "string (ID de voz de EdgeTTS)",
-                "role": "string (Cargo/Rol)",
-                "name": "string (Nombre de pila)",
-                "text": "string (Diálogo en Español)"
-            }
-          ]
-        }
+        # Get Prompt Strategy
+        system_prompt, user_prompt_template = ScenarioPrompts.get_prompt(request.scenario)
 
-        Voces Disponibles (Asigna apropiadamente para variedad de género/rol):
-        - es-AR-ElenaNeural (Mujer)
-        - es-ES-AlvaroNeural (Hombre)
-        - es-VE-SebastianNeural (Hombre)
-        - es-MX-DaliaNeural (Mujer)
-        - es-CO-GonzaloNeural (Hombre)
-        - es-US-PalomaNeural (Mujer)
-
-        REGLAS CRÍTICAS:
-        1. Contexto: Los participantes son un equipo de desarrollo de software.
-        2. Introducción: En el PRIMER turno de habla de CADA personaje, DEBEN presentarse usando el formato: "... Soy [Nombre] [Apellido]...". Todas las presentaciones deben ocurrir dentro de los primeros 3 o 4 turnos de la conversación (aprox. los primeros 30 segundos).
-        3. Realismo: El diálogo debe ser técnico, profesional pero realista para un equipo ágil (Daily, Planning, Retro, o Incidente).
-        4. Idioma: Español.
-        5. Formato de Salida: JSON Puro.
-        """
-
-        user_prompt = f"""
-        Genera un guion con los siguientes parámetros:
-        - Participantes: {request.participants}
-        - Tema: {request.topic}
-        - Contexto: {request.context}
-        - Duración Aproximada: {request.duration_minutes} minutos (Asume ~150 palabras por minuto).
-        
-        Asegúrate de que la conversación fluya naturalmente y resuelva un problema o aborde el tema propuesto.
-        """
+        # Format User Prompt
+        user_prompt = user_prompt_template.format(
+            participants=request.participants,
+            topic=request.topic,
+            context=request.context,
+            duration_minutes=request.duration_minutes
+        )
 
         try:
             response = await self.client.chat.completions.create(
