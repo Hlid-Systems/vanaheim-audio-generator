@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "sprint-simulation-audio"
+version = "0.1.0"
+description = "A microservice to generate agile sprint simulation audio using EdgeTTS and LLMs."
+authors = ["Admin <admin@example.com>"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.109.0"
+uvicorn = {extras = ["standard"], version = "^0.27.0"}
+edge-tts = "^6.1.9"
+pydantic = "^2.6.0"
+pydantic-settings = "^2.1.0"
+openai = "^1.10.0"
+python-dotenv = "^1.0.1"
+python-multipart = "^0.0.7"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+httpx = "^0.26.0"
+pytest-cov = "^7.0.0"
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["tests/*", "venv/*"]
+
+[tool.coverage.report]
+show_missing = true
+# fail_under = 80  # Uncomment to enforce strict quality gate
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

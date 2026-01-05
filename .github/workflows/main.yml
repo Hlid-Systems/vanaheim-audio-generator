@@ -1,0 +1,39 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.9"
+        
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        
+    - name: Configure Poetry
+      run: |
+        poetry config virtualenvs.create false
+        
+    - name: Install Dependencies
+      run: |
+        poetry install
+        
+    - name: Run Tests
+      # We mock OPENAI_API_KEY so tests don't fail on missing env var 
+      # (though our tests mock the actual calls, pydantic settings might still check existence)
+      env:
+        OPENAI_API_KEY: "mock-key-for-ci" 
+      run: |
+        poetry run pytest --cov=app --cov-report=term

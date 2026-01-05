@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.venv/
+
+# Distribution / Packaging
+dist/
+build/
+*.egg-info/
+
+# IDEs
+.vscode/
+.idea/
+
+# Project Specific
+temp_segments/
+data/output/
+# Generated Artifacts
+*_p*_t*m.json
+*_p*_t*m.mp3
+
+# Logs
+*.log
+
+# Coverage files
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+
+# Pytest
+.pytest_cache/
