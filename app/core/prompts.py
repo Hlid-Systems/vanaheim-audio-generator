@@ -56,7 +56,10 @@ class ScenarioPrompts:
         - Participantes: {participants}
         - Tema: {topic}
         - Contexto: {context}
-        - Duración Aproximada: {duration_minutes} minutos (Asume ~150 palabras por minuto).
+        - Duración Objetivo: {duration_minutes} minutos.
+        
+        CRÍTICO: Para cumplir con {duration_minutes} minutos, DEBES generar un mínimo de {duration_minutes} * 160 palabras. 
+        Extiéndete en la discusión, profundiza en los detalles y NO RESUMAS. El script debe ser largo.
         
         Asegúrate de que la conversación fluya naturalmente y resuelva un problema o aborde el tema propuesto.
         """
@@ -99,7 +102,10 @@ class ScenarioPrompts:
         - Personajes: {participants} (Incluyendo al Narrador)
         - Título/Tema: {topic}
         - Sinopsis/Contexto: {context}
-        - Duración: {duration_minutes} minutos.
+        - Duración Objetivo: {duration_minutes} minutos.
+        
+        CRÍTICO: Para cumplir con {duration_minutes} minutos, DEBES generar un mínimo de {duration_minutes} * 150 palabras.
+        Desarrolla escenas completas con mucho diálogo y descripciones detalladas.
         
         Desarrolla una trama interesante con inicio, nudo y desenlace.
         """
