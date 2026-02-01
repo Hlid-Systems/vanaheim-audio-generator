@@ -23,7 +23,7 @@ A professional audio synthesis microservice powered by **Hlid Systems**. Codenam
 
 ---
 
-## Environment Configuration
+## 🌍 Environment Configuration
 
 The application can run in **mixed mode**.
 
@@ -40,7 +40,7 @@ SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_KEY=your-secret-key
 ```
 
-### Supported AI Models
+### 🧠 Supported AI Models
 You can select the model in requests (`/ai/prompt`, `/simulation/scenario`).
 - `gpt-5.2-pro` (Future/Placeholder)
 - `gpt-4.1`
@@ -50,11 +50,11 @@ You can select the model in requests (`/ai/prompt`, `/simulation/scenario`).
 
 ---
 
-## Installation & Running
+## ⚙️ Installation & Running
 
 You have two professional ways to run Vanaheim.
 
-### Option A: Local Development (Poetry)
+### 🐍 Option A: Local Development (Poetry)
 Ideal for coding and debugging.
 
 1.  **Install Dependencies**:
@@ -68,7 +68,7 @@ Ideal for coding and debugging.
     poetry run uvicorn app.main:app --reload
     ```
 
-### Option B: Docker (Production/Clean)
+### 🐳 Option B: Docker (Production/Clean)
 Ideal for deployment or testing in isolation.
 
 ```bash
@@ -79,24 +79,24 @@ The service will be available at `http://localhost:8000`.
 
 ---
 
-## API Endpoints & Usage
+## 📡 API Endpoints & Usage
 
 Interactive Documentation: `http://localhost:8000/docs`
 
-### 1. Free Mode (Direct TTS)
+### 1. 🆓 Free Mode (Direct TTS)
 *   **Endpoint**: `POST /api/v1/tts/simple`
 *   **Auth**: None required.
 *   **Response**: **Direct Audio Download** (Streamed MP3).
 *   **Use Case**: Quick text-to-speech without AI processing.
 
-### 2. Developer Mode (Prompt)
+### 2. 👨‍💻 Developer Mode (Prompt)
 *   **Endpoint**: `POST /api/v1/ai/prompt`
 *   **Auth**: Requires `X-OpenAI-Key` header OR server-side `OPENAI_API_KEY`.
 *   **Response**: **Direct Audio Download** (Streamed MP3).
     *   *Metadata (Job ID, Script Preview)* included in Response Headers (`X-Vanaheim-Job-Id`).
 *   **Features**: Converts a raw prompt (e.g., "Two pirates arguing about pizza") into a script and then audio.
 
-### 3. Scenario Mode (Simulation)
+### 3. 🎬 Scenario Mode (Simulation)
 *   **Endpoint**: `POST /api/v1/simulation/scenario`
 *   **Auth**: Requires `X-OpenAI-Key` header OR server-side `OPENAI_API_KEY`.
 *   **Response**: **Direct Audio Download** (Streamed MP3).
@@ -105,7 +105,7 @@ Interactive Documentation: `http://localhost:8000/docs`
 
 ---
 
-## Testing & Quality
+## 🧪 Testing & Quality
 
 We maintain a high standard of code quality (Coverage > 80%).
 
@@ -127,5 +127,5 @@ Ensure your `vanaheim_audio` table has the following columns to avoid warnings:
 
 ---
 
-## License
-MIT © Hlid Systems
+## ⚖️ License
+[MIT © Hlid Systems](LICENSE)

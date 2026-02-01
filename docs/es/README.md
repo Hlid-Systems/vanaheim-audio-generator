@@ -23,7 +23,7 @@ Un microservicio profesional de síntesis de audio impulsado por **Hlid Systems*
 
 ---
 
-## Configuración del Entorno
+## 🌍 Configuración del Entorno
 
 La aplicación puede ejecutarse en **modo mixto**.
 
@@ -40,7 +40,7 @@ SUPABASE_URL=https://tu-proyecto.supabase.co
 SUPABASE_KEY=tu-clave-secreta
 ```
 
-### Modelos de IA Soportados
+### 🧠 Modelos de IA Soportados
 Puedes seleccionar el modelo en las peticiones (`/ai/prompt`, `/simulation/scenario`).
 - `gpt-5.2-pro` (Futuro/Placeholder)
 - `gpt-4.1`
@@ -50,11 +50,11 @@ Puedes seleccionar el modelo en las peticiones (`/ai/prompt`, `/simulation/scena
 
 ---
 
-## Instalación y Ejecución
+## ⚙️ Instalación y Ejecución
 
 Tienes dos formas profesionales de ejecutar Vanaheim.
 
-### Opción A: Desarrollo Local (Poetry)
+### 🐍 Opción A: Desarrollo Local (Poetry)
 Ideal para programar y depurar.
 
 1.  **Instalar Dependencias**:
@@ -68,7 +68,7 @@ Ideal para programar y depurar.
     poetry run uvicorn app.main:app --reload
     ```
 
-### Opción B: Docker (Producción/Limpio)
+### 🐳 Opción B: Docker (Producción/Limpio)
 Ideal para despliegue o pruebas aisladas.
 
 ```bash
@@ -79,24 +79,24 @@ El servicio estará disponible en `http://localhost:8000`.
 
 ---
 
-## Endpoints de la API y Uso
+## 📡 Endpoints de la API y Uso
 
 Documentación Interactiva: `http://localhost:8000/docs`
 
-### 1. Modo Gratuito (TTS Directo)
+### 1. 🆓 Modo Gratuito (TTS Directo)
 *   **Endpoint**: `POST /api/v1/tts/simple`
 *   **Auth**: No requerida.
 *   **Respuesta**: **Descarga de Audio Directa** (Stream MP3).
 *   **Uso**: Texto a voz rápido sin procesamiento de IA.
 
-### 2. Modo Desarrollador (Prompt)
+### 2. 👨‍💻 Modo Desarrollador (Prompt)
 *   **Endpoint**: `POST /api/v1/ai/prompt`
 *   **Auth**: Requiere header `X-OpenAI-Key` O variable de entorno `OPENAI_API_KEY`.
 *   **Respuesta**: **Descarga de Audio Directa** (Stream MP3).
     *   *Metadatos (Job ID, Script Preview)* incluidos en Headers de respuesta (`X-Vanaheim-Job-Id`).
 *   **Funciones**: Convierte una instrucción libre (ej: "Dos piratas discutiendo sobre pizza") en guión y audio.
 
-### 3. Modo Escenario (Simulación)
+### 3. 🎬 Modo Escenario (Simulación)
 *   **Endpoint**: `POST /api/v1/simulation/scenario`
 *   **Auth**: Requiere header `X-OpenAI-Key` O variable de entorno `OPENAI_API_KEY`.
 *   **Respuesta**: **Descarga de Audio Directa** (Stream MP3).
@@ -105,7 +105,7 @@ Documentación Interactiva: `http://localhost:8000/docs`
 
 ---
 
-## Pruebas y Calidad
+## 🧪 Pruebas y Calidad
 
 Mantenemos un alto estándar de calidad de código (Cobertura > 80%).
 
@@ -127,5 +127,5 @@ Asegúrate de que tu tabla `vanaheim_audio` tenga las siguientes columnas para e
 
 ---
 
-## Licencia
-MIT © Hlid Systems
+## ⚖️ Licencia
+[MIT © Hlid Systems](LICENSE)
