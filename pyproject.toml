@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "simulation-audio-generator"
+name = "vanaheim-audio-generator"
 version = "0.1.0"
 description = "A professional audio synthesis microservice (Vanaheim) by Hlid Systems using EdgeTTS and LLMs."
 authors = ["Admin <admin@example.com>"]
