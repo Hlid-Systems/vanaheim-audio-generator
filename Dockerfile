@@ -18,7 +18,7 @@ RUN poetry config virtualenvs.create false \
 
 # Application Code
 COPY app ./app
-COPY data ./data
+RUN mkdir data
 
 EXPOSE 8000
 
