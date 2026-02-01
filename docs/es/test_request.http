@@ -1,0 +1,39 @@
+### 1. Modo Gratuito: Texto Simple (Sin IA)
+# Endpoint: /tts/simple
+# Descripción: Convierte texto plano a audio usando una voz específica.
+POST http://localhost:8000/api/v1/tts/simple
+Content-Type: application/json
+
+{
+  "text": "Hola, esto es una prueba del modo gratuito de Vanaheim.",
+  "voice": "es-MX-DaliaNeural"
+}
+
+### 2. Modo Desarrollador: Prompt -> IA -> Audio
+# Endpoint: /ai/prompt
+# Descripción: Tú das la instrucción, la IA escribe el guión y genera el audio.
+# Requiere: Header X-OpenAI-Key
+POST http://localhost:8000/api/v1/ai/prompt
+Content-Type: application/json
+X-OpenAI-Key: sk-proj-xxxxxxxxxxxxxxxxxxxxxxxx
+
+{
+  "prompt": "Crea un diálogo corto entre un vendedor de tacos y un cliente indeciso.",
+  "topic": "Venta Graciosa"
+}
+
+### 3. Modo Especializado: Simulación de Escenario
+# Endpoint: /simulation/scenario
+# Descripción: El modo clásico estructurado. Definido por tiempo, participantes y escenario.
+# Requiere: Header X-OpenAI-Key
+POST http://localhost:8000/api/v1/simulation/scenario
+Content-Type: application/json
+X-OpenAI-Key: sk-proj-xxxxxxxxxxxxxxxxxxxxxxxx
+
+{
+  "scenario": "CORPORATE",
+  "topic": "Estado del Proyecto Alpha",
+  "context": "El equipo está retrasado debido a errores inesperados.",
+  "duration_minutes": 1,
+  "participants": 2
+}

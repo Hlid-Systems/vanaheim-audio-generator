@@ -1,90 +1,125 @@
-# Simulation Audio Generator
 
-A professional microservice designed to generate realistic corporate team audio simulations. It combines **LLM-based Script Generation** (OpenAI) with **High-Quality Text-to-Speech** (EdgeTTS).
+[🇪🇸 Versión en Español](docs/es/README.md)
+
+# Vanaheim Audio Generator (Hlid Systems)
+
+A professional audio synthesis microservice powered by **Hlid Systems**. Codenamed **Vanaheim**, it is designed for developers, creators, and teams, combining **LLM-based Script Generation** (OpenAI) with **High-Quality Text-to-Speech** (EdgeTTS) to create realistic voice simulations.
+
+---
 
 ## Features
 
 - **Dynamic Script Generation**: Creates unique scenarios based on topic, context, and participant count.
 - **Realistic Voice Synthesis**: Uses neural voices to assign distinct personalities to roles (Lead, PO, Engineers).
-- **Clean Architecture**: Built with FastAPI, adhering to separation of concerns.
-- **Type Safety**: Fully typed with Pydantic.
-- **Structured Logging**: Production-ready logging configuration.
+- **Clean Architecture**: Built with FastAPI, adhering to separation of concerns (Hexagonal).
+- **Munin Protocol**: Optional Integration with Supabase for auditing and data persistence.
+- **Flexible Deployment**: Run via Poetry (Local) or Docker (Containerized).
 
-## Prerequisites
+---
 
-- Python 3.9+
-- Poetry (Dependency Manager)
-- OpenAI API Key
+## Environment Configuration
 
-## Installation
+The application can run in **mixed mode**.
+
+1.  **Simple Config (Optional)**: If you only use `/tts/simple` (Direct Text-to-Speech), **NO .env file is required**.
+2.  **Full Power (Recommended)**: For AI generation and persistence, create a `.env` file:
+
+```ini
+# Required for AI Script Generation (Server-side default)
+# If not set here, you MUST provide it via X-OpenAI-Key header in requests.
+OPENAI_API_KEY=sk-your-key-here
+
+# Optional: Supabase Persistence (Munin Audit)
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your-secret-key
+```
+
+### Supported AI Models
+You can select the model in requests (`/ai/prompt`, `/simulation/scenario`).
+- `gpt-5.2-pro` (Future/Placeholder)
+- `gpt-4.1`
+- `gpt-4-turbo` (Recommended default)
+- `gpt-4`
+- `gpt-3.5-turbo`
+
+---
+
+## Installation & Running
+
+You have two professional ways to run Vanaheim.
+
+### Option A: Local Development (Poetry)
+Ideal for coding and debugging.
 
 1.  **Install Dependencies**:
     ```bash
+    poetry env use python3.11   # Force Python 3.11
     poetry install
     ```
-2.  **Environment Setup**:
-    Create a `.env` file:
-    ```ini
-    OPENAI_API_KEY=sk-your-key
+2.  **Run Server**:
+    ```bash
+    # Activates virtualenv implicitly
+    poetry run uvicorn app.main:app --reload
     ```
 
-## Usage
-
-### Running the Server
-```bash
-poetry run uvicorn app.main:app --reload
-```
-The API will be available at `http://localhost:8000`.
-Documentation: `http://localhost:8000/docs`.
-
-### Running Tests
-This project includes a robust test suite with **Code Coverage**.
-The `pytest.ini` file defines standard configuration (paths, async mode).
+### Option B: Docker (Production/Clean)
+Ideal for deployment or testing in isolation.
 
 ```bash
-# Run tests and view coverage report
-poetry run pytest --cov=app --cov-report=term
+# Build and Run
+docker-compose up --build
+```
+The service will be available at `http://localhost:8000`.
+
+---
+
+## API Endpoints & Usage
+
+Interactive Documentation: `http://localhost:8000/docs`
+
+### 1. Free Mode (Direct TTS)
+*   **Endpoint**: `POST /api/v1/tts/simple`
+*   **Auth**: None required.
+*   **Response**: **Direct Audio Download** (Streamed MP3).
+*   **Use Case**: Quick text-to-speech without AI processing.
+
+### 2. Developer Mode (Prompt)
+*   **Endpoint**: `POST /api/v1/ai/prompt`
+*   **Auth**: Requires `X-OpenAI-Key` header OR server-side `OPENAI_API_KEY`.
+*   **Response**: **Direct Audio Download** (Streamed MP3).
+    *   *Metadata (Job ID, Script Preview)* included in Response Headers (`X-Vanaheim-Job-Id`).
+*   **Features**: Converts a raw prompt (e.g., "Two pirates arguing about pizza") into a script and then audio.
+
+### 3. Scenario Mode (Simulation)
+*   **Endpoint**: `POST /api/v1/simulation/scenario`
+*   **Auth**: Requires `X-OpenAI-Key` header OR server-side `OPENAI_API_KEY`.
+*   **Response**: **Direct Audio Download** (Streamed MP3).
+    *   *Metadata (Job ID, Participants)* included in Response Headers.
+*   **Features**: Structured simulation (Corporate, Podcast) with precise timing controls.
+
+---
+
+## Testing & Quality
+
+We maintain a high standard of code quality (Coverage > 80%).
+
+```bash
+# Run Unit & Integration Tests
+poetry run pytest
 ```
 
-### File Conventions
-Generated files (Script and Audio) follow the format: `{ShortID}_p{Participants}_t{Duration}m.[json|mp3]`
-Example: `a1b2_p4_t5m.mp3`
+---
 
-### Logs
-Structured logging is implemented in `app/core/logging.py`. Logs are output to the console.
+## 🛡️ Munin Protocol (Data Persistence)
 
-### API Endpoints
+If `SUPABASE_URL` is configured, the system automatically logs simulations to your database for auditing.
 
-#### 1. Generate New Simulation
-`POST /api/v1/simulation/generate`
+**Note on Database Schema**:
+Ensure your `vanaheim_audio` table has the following columns to avoid warnings:
+- `configuration` (JSONB): Stores model/voice settings.
+- `script_content` (Text): Stores the full generated script.
 
-Generates a script from scratch and then the audio.
+---
 
-**Payload:**
-```json
-{
-  "participants": 4,
-  "duration_minutes": 2,
-  "topic": "Project Post-Mortem",
-  "context": "The team missed the Q3 deadline due to unexpected integration issues."
-}
-```
-
-#### 2. Generate Audio from Existing Script
-`POST /api/v1/simulation/audio-only`
-
-**Payload:**
-```json
-{
-  "script_name": "generated_script_name",
-  "output_filename": "optional_custom_name.mp3"
-}
-```
-
-#### 3. Upload Script File
-`POST /api/v1/simulation/audio-from-file`
-Upload a `.json` file via form-data (`key="file"`).
-
-#### 4. Paste Script JSON
-`POST /api/v1/simulation/audio-from-json`
-Paste the raw segment list in the request body.
+## License
+MIT © Hlid Systems

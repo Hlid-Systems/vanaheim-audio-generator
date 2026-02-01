@@ -1,0 +1,38 @@
+### 1. Free Mode: Simple Text (No AI)
+# Endpoint: /tts/simple
+# Description: Converts plain text to audio using a specific voice.
+POST http://localhost:8000/api/v1/tts/simple
+Content-Type: application/json
+
+{
+  "text": "Hello, this is a test of Vanaheim's free mode.",
+  "voice": "en-US-AriaNeural"
+}
+
+### 2. Developer Mode: Prompt -> AI -> Audio
+# Endpoint: /ai/prompt
+# Description: You provide the prompt, AI writes the script and generates audio.
+# Requires: X-OpenAI-Key
+POST http://localhost:8000/api/v1/ai/prompt
+Content-Type: application/json
+X-OpenAI-Key: sk-proj-xxxxxxxxxxxxxxxxxxxxxxxx
+{
+  "prompt": "Create a short dialogue between a taco vendor and an undecided customer.",
+  "topic": "Funny Sales"
+}
+
+### 3. Specialized Mode: Scenario Simulation
+# Endpoint: /simulation/scenario
+# Description: The classic structured mode. Defined by timer, participants, and scenario.
+# Requires: X-OpenAI-Key
+POST http://localhost:8000/api/v1/simulation/scenario
+Content-Type: application/json
+X-OpenAI-Key: sk-proj-xxxxxxxxxxxxxxxxxxxxxxxx
+
+{
+  "scenario": "CORPORATE",
+  "topic": "Project Alpha Status",
+  "context": "Team is behind schedule due to unexpected bugs.",
+  "duration_minutes": 1,
+  "participants": 2
+}

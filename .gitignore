@@ -20,12 +20,20 @@ build/
 
 # Project Specific
 temp_segments/
-data/output/
+!temp_segments/.gitkeep
+data/
+!data/.gitkeep
+
+# Context
+codex/
+
 # Generated Artifacts
 *_p*_t*m.json
 *_p*_t*m.mp3
 
 # Logs
+logs/
+!logs/.gitkeep
 *.log
 
 # Coverage files
