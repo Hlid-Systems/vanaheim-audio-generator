@@ -1,19 +1,25 @@
 
 [🇺🇸 English Version](../../README.md)
 
-# Vanaheim Audio Generator (Hlid Systems)
+# 🔊 Vanaheim Audio Generator (Hlid Systems)
+
+![License](https://img.shields.io/github/license/Hlid-Systems/vanaheim-audio-generator?style=for-the-badge)
+![Python](https://img.shields.io/badge/python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.109-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Architecture](https://img.shields.io/badge/Arquitectura-Hexagonal-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Estado-V1.0_Gold-success?style=for-the-badge)
 
 Un microservicio profesional de síntesis de audio impulsado por **Hlid Systems**. Bajo el nombre clave **Vanaheim**, está diseñado para desarrolladores, creadores y equipos, combinando **Generación de Guiones basada en LLM** (OpenAI) con **Síntesis de Voz de Alta Calidad** (EdgeTTS) para crear simulaciones de voz realistas.
 
 ---
 
-## Características
+## ✨ Características
 
-- **Generación Dinámica de Guiones**: Crea escenarios únicos basados en el tema, contexto y número de participantes.
-- **Síntesis de Voz Realista**: Utiliza voces neurales para asignar personalidades distintas a cada rol (Líder, Product Owner, Ingenieros).
-- **Arquitectura Limpia**: Construido con FastAPI, siguiendo estrictamente la separación de responsabilidades (Arquitectura Hexagonal).
-- **Protocolo Munin**: Integración opcional con Supabase para auditoría y persistencia de datos.
-- **Despliegue Flexible**: Ejecute vía Poetry (Local) o Docker (Contenedor).
+- **🎭 Generación Dinámica de Guiones**: Crea escenarios únicos basados en el tema, contexto y número de participantes.
+- **🗣️ Síntesis de Voz Realista**: Utiliza voces neurales para asignar personalidades distintas a cada rol (Líder, Product Owner, Ingenieros).
+- **🏗️ Arquitectura Limpia**: Construido con FastAPI, siguiendo estrictamente la separación de responsabilidades (Arquitectura Hexagonal).
+- **🛡️ Protocolo Munin**: Integración opcional con Supabase para auditoría y persistencia de datos.
+- **🐳 Despliegue Flexible**: Ejecute vía Poetry (Local) o Docker (Contenedor).
 
 ---
 

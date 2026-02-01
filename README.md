@@ -1,19 +1,25 @@
 
 [🇪🇸 Versión en Español](docs/es/README.md)
 
-# Vanaheim Audio Generator (Hlid Systems)
+# 🔊 Vanaheim Audio Generator (Hlid Systems)
+
+![License](https://img.shields.io/github/license/Hlid-Systems/vanaheim-audio-generator?style=for-the-badge)
+![Python](https://img.shields.io/badge/python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.109-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Architecture](https://img.shields.io/badge/Architecture-Hexagonal-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-V1.0_Gold-success?style=for-the-badge)
 
 A professional audio synthesis microservice powered by **Hlid Systems**. Codenamed **Vanaheim**, it is designed for developers, creators, and teams, combining **LLM-based Script Generation** (OpenAI) with **High-Quality Text-to-Speech** (EdgeTTS) to create realistic voice simulations.
 
 ---
 
-## Features
+## ✨ Features
 
-- **Dynamic Script Generation**: Creates unique scenarios based on topic, context, and participant count.
-- **Realistic Voice Synthesis**: Uses neural voices to assign distinct personalities to roles (Lead, PO, Engineers).
-- **Clean Architecture**: Built with FastAPI, adhering to separation of concerns (Hexagonal).
-- **Munin Protocol**: Optional Integration with Supabase for auditing and data persistence.
-- **Flexible Deployment**: Run via Poetry (Local) or Docker (Containerized).
+- **🎭 Dynamic Script Generation**: Creates unique scenarios based on topic, context, and participant count.
+- **🗣️ Realistic Voice Synthesis**: Uses neural voices to assign distinct personalities to roles (Lead, PO, Engineers).
+- **🏗️ Clean Architecture**: Built with FastAPI, adhering to separation of concerns (Hexagonal).
+- **🛡️ Munin Protocol**: Optional Integration with Supabase for auditing and data persistence.
+- **🐳 Flexible Deployment**: Run via Poetry (Local) or Docker (Containerized).
 
 ---
 
